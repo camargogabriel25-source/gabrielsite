@@ -37,7 +37,7 @@
 
     }
 
-    .botao:hover {
+    body {
       background: #f5f5f5;
       display: flex;
       justify-content: center;
@@ -47,10 +47,7 @@
       font-family: Arial, sans-serif;
     }
 
-    .botao:hover {
-  background-color: #0056b3;
-}
-
+    /* Botão em formato de livro */
     .book-button {
       width: 150px;
       height: 100px;
@@ -73,6 +70,7 @@
       transition: 0.3s ease;
     }
 
+    /* Lombada do livro */
     .book-button::before {
       content: "";
       position: absolute;
@@ -84,6 +82,7 @@
       border-radius: 2px;
     }
 
+    /* Linhas das páginas */
     .book-button::after {
       content: "";
       position: absolute;
@@ -105,6 +104,7 @@
       box-shadow: 0 10px 18px rgba(0, 0, 0, 0.25);
     }
 
+    /* Estilo depois do clique */
     .book-button.active {
       background: linear-gradient(
         to right,
@@ -139,16 +139,20 @@
 
         <h2>Faça sua escolha</h2>
     </main>
-    //*<a href="index 2.html" class="botao">Faça Sua História</a>
-     <button class="book-button" id="bookButton" aria-label="Mudar estilo do livro"></button>*//
 
-  <script>
-    const button = document.getElementById("bookButton");
+<button class="book-button" id="bookButton" aria-label="Abrir livro"></button>
 
-    button.addEventListener("click", () => {
-      button.classList.toggle("active");
-    });
+<script>
+  const button = document.getElementById("bookButton");
 
+  button.addEventListener("click", () => {
+    button.classList.add("active");
+
+    setTimeout(() => {
+      window.location.href = "index 2.html";
+    }, 300);
+  });
+</script>
 
 </body>
 
