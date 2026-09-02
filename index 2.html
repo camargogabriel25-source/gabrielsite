@@ -2,58 +2,760 @@
 <html lang="pt-br">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
+
+    <title>Biblioteca - Shumatsū No Kizuna</title>
+
+
+    <style>
+
+        /* ================================
+           CONFIGURAÇÕES GERAIS
+        ================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    #242424 0%,
+                    #111111 55%,
+                    #050505 100%
+                );
+
+            color: silver;
+
+            font-family: Arial, sans-serif;
+
+            padding: 30px 15px;
+
+        }
+
+
+        /* ================================
+           CABEÇALHO
+        ================================= */
+
+        header {
+
+            width: 100%;
+
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            padding: 25px;
+
+            text-align: center;
+
+            background: rgba(20, 20, 20, 0.95);
+
+            border: 4px solid rgb(153, 135, 34);
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.7);
+
+        }
+
+
+        header h1 {
+
+            margin: 0 0 10px;
+
+            color: #ffffff;
+
+            font-size: 32px;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        header p {
+
+            margin: 0;
+
+            color: #aaa;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* ================================
+           BIBLIOTECA
+        ================================= */
+
+        .biblioteca {
+
+            width: 100%;
+
+            max-width: 1100px;
+
+            margin: 50px auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 45px 30px;
+
+            justify-items: center;
+
+        }
+
+
+        /* ================================
+           LIVRO
+        ================================= */
+
+        .livro {
+
+            width: 170px;
+
+            text-decoration: none;
+
+            color: white;
+
+            display: block;
+
+            cursor: pointer;
+
+            position: relative;
+
+            transition:
+                transform 0.35s ease;
+
+        }
+
+
+        /* ================================
+           CAPA DO LIVRO
+        ================================= */
+
+        .livro img {
+
+            width: 100%;
+
+            height: auto;
+
+            display: block;
+
+            border-radius: 5px;
+
+            box-shadow:
+                0 10px 18px rgba(0, 0, 0, 0.75);
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease,
+                filter 0.35s ease;
+
+        }
+
+
+        /* ================================
+           INTERAÇÃO COM O MOUSE
+        ================================= */
+
+        .livro:hover {
+
+            transform:
+                translateY(-12px);
+
+        }
+
+
+        .livro:hover img {
+
+            transform:
+                perspective(700px)
+                rotateY(-4deg)
+                scale(1.04);
+
+            box-shadow:
+                0 18px 30px rgba(0, 0, 0, 0.9);
+
+            filter:
+                brightness(1.12);
+
+        }
+
+
+        /* ================================
+           EFEITO DE CLIQUE
+        ================================= */
+
+        .livro:active {
+
+            transform:
+                translateY(-4px)
+                scale(0.96);
+
+        }
+
+
+        .livro:active img {
+
+            box-shadow:
+                0 5px 10px rgba(0, 0, 0, 0.8);
+
+        }
+
+
+        /* ================================
+           NOME DO LIVRO
+        ================================= */
+
+        .livro h3 {
+
+            margin:
+
+                14px 0 0;
+
+            text-align: center;
+
+            color: #ffffff;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+        }
+
+
+        /* ================================
+           DESCRIÇÃO
+        ================================= */
+
+        .livro p {
+
+            margin:
+
+                7px 0 0;
+
+            text-align: center;
+
+            color: #999;
+
+            font-size: 13px;
+
+            line-height: 1.4;
+
+        }
+
+
+        /* ================================
+           LINHA DECORATIVA
+        ================================= */
+
+        .separador {
+
+            width: 100%;
+
+            max-width: 1100px;
+
+            height: 2px;
+
+            margin: 10px auto 40px;
+
+            background:
+                linear-gradient(
+                    to right,
+                    transparent,
+                    #998722,
+                    transparent
+                );
+
+        }
+
+
+        /* ================================
+           BOTÃO VOLTAR
+        ================================= */
+
+        .voltar {
+
+            display: block;
+
+            width: fit-content;
+
+            margin: 30px auto;
+
+            padding: 12px 28px;
+
+            background: #1c1c1c;
+
+            border: 2px solid #777;
+
+            border-radius: 6px;
+
+            color: white;
+
+            text-decoration: none;
+
+            transition:
+                0.3s ease;
+
+        }
+
+
+        .voltar:hover {
+
+            background: #333;
+
+            border-color: #aaa;
+
+            transform:
+                translateY(-3px);
+
+        }
+
+
+        /* ================================
+           TABLET
+        ================================= */
+
+        @media (max-width: 950px) {
+
+            .biblioteca {
+
+                grid-template-columns:
+                    repeat(3, 1fr);
+
+            }
+
+        }
+
+
+        /* ================================
+           CELULAR
+        ================================= */
+
+        @media (max-width: 600px) {
+
+            body {
+
+                padding: 15px 10px;
+
+            }
+
+
+            header {
+
+                padding: 20px 15px;
+
+            }
+
+
+            header h1 {
+
+                font-size: 25px;
+
+            }
+
+
+            header p {
+
+                font-size: 14px;
+
+            }
+
+
+            .biblioteca {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 35px 15px;
+
+                margin-top: 35px;
+
+            }
+
+
+            .livro {
+
+                width: 135px;
+
+            }
+
+
+            .livro h3 {
+
+                font-size: 15px;
+
+            }
+
+
+            .livro p {
+
+                font-size: 12px;
+
+            }
+
+        }
+
+
+        /* ================================
+           CELULARES PEQUENOS
+        ================================= */
+
+        @media (max-width: 380px) {
+
+            .livro {
+
+                width: 120px;
+
+            }
+
+        }
+
+    </style>
+
 </head>
-<style>
-    header {
-        background-color: rgb(88, 0, 0);
-        color: rgb(117, 83, 19);
-        text-align: center;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 16px;
-        border: 5px solid rgb(110, 0, 236);
-    }
 
-    main {
-        background-color: rgb(0, 94, 89);
-        color: silver;
-        text-align: center;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 16px;
-        border: 5px solid rgb(100, 100, 98);
-    }
-
-    img {
-        width: 400px;
-        height: 200px;
-        text-align: center;
-        max-width: auto;
-        margin: 0 auto;
-        padding: auto;
-
-    }
-</style>
 
 <body>
+
+
+    <!-- =================================
+         CABEÇALHO
+    ================================== -->
+
     <header>
-        <h1>Leia os livros para criar uma hidtória incrível</h1>
-        <p>Crie e comande sua própria história nesse mundo, seja livre, mas cada ação, cada palavra, cada lugar terá uma reação.
+
+        <h1>
+            Biblioteca
+        </h1>
+
+        <p>
+            Livros necessários para explorar
+            o universo de Shumatsū No Kizuna.
         </p>
+
     </header>
-    <main>
-
-        <div>
-            <img src="dado.png" alt="Um dado de RPG D20 turquesa com detalhes em ouro. A face central exibe uma gravura complexa
-         de uma Árvore da Vida e um dragão. Outros números visíveis são 8 e 14. Fundo verde-claro suave">
-        </div>
 
 
-        <h2>Faça sua escolha</h2>
+
+    <div class="separador"></div>
+
+
+
+    <!-- =================================
+         LIVROS
+         
+         SERÃO 10 LIVROS.
+         
+         CADA <a> É UM BOTÃO.
+    ================================== -->
+
+    <main class="biblioteca">
+
+
+        <!-- =================================
+             LIVRO 01
+             
+             TROQUE:
+             livro01.png
+             
+             PELO NOME DA SUA CAPA.
+        ================================== -->
+
+        <a
+            href="livro01.html"
+            class="livro"
+        >
+
+            <!-- CAPA DO LIVRO 01 -->
+            <img
+                src="livro01.png"
+                alt="Capa do Livro 1"
+            >
+
+            <h3>
+                Livro 01
+            </h3>
+
+            <p>
+                Descrição do primeiro livro.
+            </p>
+
+        </a>
+
+
+
+        <!-- =================================
+             LIVRO 02
+        ================================== -->
+
+        <a
+            href="livro02.html"
+            class="livro"
+        >
+
+            <!-- CAPA DO LIVRO 02 -->
+            <img
+                src="livro02.png"
+                alt="Capa do Livro 2"
+            >
+
+            <h3>
+                Livro 02
+            </h3>
+
+            <p>
+                Descrição do segundo livro.
+            </p>
+
+        </a>
+
+
+
+        <!-- =================================
+             LIVRO 03
+        ================================== -->
+
+        <a
+            href="livro03.html"
+            class="livro"
+        >
+
+            <!-- CAPA DO LIVRO 03 -->
+            <img
+                src="livro03.png"
+                alt="Capa do Livro 3"
+            >
+
+            <h3>
+                Livro 03
+            </h3>
+
+            <p>
+                Descrição do terceiro livro.
+            </p>
+
+        </a>
+
+
+
+        <!-- =================================
+             LIVRO 04
+        ================================== -->
+
+        <a
+            href="livro04.html"
+            class="livro"
+        >
+
+            <!-- CAPA DO LIVRO 04 -->
+            <img
+                src="livro04.png"
+                alt="Capa do Livro 4"
+            >
+
+            <h3>
+                Livro 04
+            </h3>
+
+            <p>
+                Descrição do quarto livro.
+            </p>
+
+        </a>
+
+
+
+        <!-- =================================
+             LIVRO 05
+        ================================== -->
+
+        <a
+            href="livro05.html"
+            class="livro"
+        >
+
+            <!-- CAPA DO LIVRO 05 -->
+            <img
+                src="livro05.png"
+                alt="Capa do Livro 5"
+            >
+
+            <h3>
+                Livro 05
+            </h3>
+
+            <p>
+                Descrição do quinto livro.
+            </p>
+
+        </a>
+
+
+
+        <!-- =================================
+             LIVRO 06
+        ================================== -->
+
+        <a
+            href="livro06.html"
+            class="livro"
+        >
+
+            <!-- CAPA DO LIVRO 06 -->
+            <img
+                src="livro06.png"
+                alt="Capa do Livro 6"
+            >
+
+            <h3>
+                Livro 06
+            </h3>
+
+            <p>
+                Descrição do sexto livro.
+            </p>
+
+        </a>
+
+
+
+        <!-- =================================
+             LIVRO 07
+        ================================== -->
+
+        <a
+            href="livro07.html"
+            class="livro"
+        >
+
+            <!-- CAPA DO LIVRO 07 -->
+            <img
+                src="livro07.png"
+                alt="Capa do Livro 7"
+            >
+
+            <h3>
+                Livro 07
+            </h3>
+
+            <p>
+                Descrição do sétimo livro.
+            </p>
+
+        </a>
+
+
+
+        <!-- =================================
+             LIVRO 08
+        ================================== -->
+
+        <a
+            href="livro08.html"
+            class="livro"
+        >
+
+            <!-- CAPA DO LIVRO 08 -->
+            <img
+                src="livro08.png"
+                alt="Capa do Livro 8"
+            >
+
+            <h3>
+                Livro 08
+            </h3>
+
+            <p>
+                Descrição do oitavo livro.
+            </p>
+
+        </a>
+
+
+
+        <!-- =================================
+             LIVRO 09
+        ================================== -->
+
+        <a
+            href="livro09.html"
+            class="livro"
+        >
+
+            <!-- CAPA DO LIVRO 09 -->
+            <img
+                src="livro09.png"
+                alt="Capa do Livro 9"
+            >
+
+            <h3>
+                Livro 09
+            </h3>
+
+            <p>
+                Descrição do nono livro.
+            </p>
+
+        </a>
+
+
+
+        <!-- =================================
+             LIVRO 10
+        ================================== -->
+
+        <a
+            href="livro10.html"
+            class="livro"
+        >
+
+            <!-- CAPA DO LIVRO 10 -->
+            <img
+                src="livro10.png"
+                alt="Capa do Livro 10"
+            >
+
+            <h3>
+                Livro 10
+            </h3>
+
+            <p>
+                Descrição do décimo livro.
+            </p>
+
+        </a>
+
+
     </main>
+
+
+
+    <!-- =================================
+         VOLTAR PARA A PÁGINA INICIAL
+    ================================== -->
+
+    <a
+        href="index.html"
+        class="voltar"
+    >
+        ← Voltar
+    </a>
 
 
 </body>
