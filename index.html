@@ -1,159 +1,230 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
-</head>
+<!DOCTYPE html> <html lang="pt-br"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Shumatsū No Kizuna</title>
 <style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        background: #f5f5f5;
+        margin: 0;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+
+        padding: 30px 15px;
+    }
+
     header {
         background-color: rgba(83, 0, 161, 0.815);
         color: rgba(0, 0, 36, 0.753);
+
         text-align: center;
+
+        width: 100%;
         max-width: 800px;
-        margin: 0 auto;
+
         padding: 16px;
+
         border: 5px solid rgb(100, 9, 27);
+        border-radius: 8px;
+    }
+
+    header h1 {
+        margin-top: 0;
+    }
+
+    header p {
+        line-height: 1.6;
     }
 
     main {
         background-color: black;
         color: silver;
+
         text-align: center;
+
+        width: 100%;
         max-width: 800px;
-        margin: 0 auto;
-        padding: 16px;
+
+        padding: 20px;
+
         border: 5px solid rgb(153, 135, 34);
+        border-radius: 8px;
     }
 
-    img {
+    main img {
         width: 400px;
-        height: 200px;
-        text-align: center;
-        max-width: auto;
-        margin: 0 auto;
-        padding: auto;
+        max-width: 100%;
+        height: auto;
 
-    }
+        display: block;
+        margin: 0 auto 20px;
 
-    body {
-      background: #f5f5f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      font-family: Arial, sans-serif;
+        border-radius: 5px;
     }
 
     /* Botão em formato de livro */
     .book-button {
-      width: 150px;
-      height: 100px;
-      background: linear-gradient(
-        to right,
-        #ffffff 0%,
-        #eeeeee 48%,
-        #cccccc 50%,
-        #eeeeee 52%,
-        #ffffff 100%
-      );
+        width: 150px;
+        height: 100px;
 
-      border: 2px solid #999;
-      border-radius: 5px 10px 10px 5px;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(
+            to right,
+            #ffffff 0%,
+            #eeeeee 48%,
+            #cccccc 50%,
+            #eeeeee 52%,
+            #ffffff 100%
+        );
 
-      cursor: pointer;
-      position: relative;
+        border: 2px solid #999;
+        border-radius: 5px 10px 10px 5px;
 
-      transition: 0.3s ease;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+
+        cursor: pointer;
+        position: relative;
+
+        transition: 0.3s ease;
     }
 
     /* Lombada do livro */
     .book-button::before {
-      content: "";
-      position: absolute;
-      left: 12px;
-      top: 5px;
-      bottom: 5px;
-      width: 3px;
-      background: #aaa;
-      border-radius: 2px;
+        content: "";
+
+        position: absolute;
+
+        left: 12px;
+        top: 5px;
+        bottom: 5px;
+
+        width: 3px;
+
+        background: #aaa;
+        border-radius: 2px;
     }
 
     /* Linhas das páginas */
     .book-button::after {
-      content: "";
-      position: absolute;
-      right: 10px;
-      top: 15px;
-      width: 55px;
-      height: 2px;
-      background: #aaa;
-      box-shadow:
-        0 8px #aaa,
-        0 16px #aaa,
-        0 24px #aaa,
-        0 32px #aaa;
-      opacity: 0.7;
+        content: "";
+
+        position: absolute;
+
+        right: 10px;
+        top: 15px;
+
+        width: 55px;
+        height: 2px;
+
+        background: #aaa;
+
+        box-shadow:
+            0 8px #aaa,
+            0 16px #aaa,
+            0 24px #aaa,
+            0 32px #aaa;
+
+        opacity: 0.7;
     }
 
     .book-button:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.25);
+        transform: translateY(-5px);
+
+        box-shadow:
+            0 10px 18px rgba(0, 0, 0, 0.25);
     }
 
-    /* Estilo depois do clique */
+    /* Efeito depois do clique */
     .book-button.active {
-      background: linear-gradient(
-        to right,
-        #e8e8e8,
-        #ffffff 45%,
-        #999999 50%,
-        #ffffff 55%,
-        #e8e8e8
-      );
+        background: linear-gradient(
+            to right,
+            #e8e8e8,
+            #ffffff 45%,
+            #999999 50%,
+            #ffffff 55%,
+            #e8e8e8
+        );
 
-      border-color: #666;
-      transform: scale(1.05);
+        border-color: #666;
+
+        transform: scale(1.05);
     }
 
+    /* Ajuste para celular */
+    @media (max-width: 500px) {
+        body {
+            padding: 15px 10px;
+        }
+
+        header,
+        main {
+            padding: 15px;
+        }
+
+        header h1 {
+            font-size: 25px;
+        }
+
+        header p {
+            font-size: 14px;
+        }
+
+        .book-button {
+            width: 130px;
+            height: 90px;
+        }
+    }
 </style>
 
-<body>
-    <header>
-        <h1>Shumatsū No Kizuna</h1>
-        <p>Historias de um mundo no qual desafia mitos conceitos e o proprio conhecimento um mundo aterrado por guerras
-            e catástrofres nas quais sempre geram seres que se destacam. Gostaria de criar sua própria história ou de
-            ler alguma aventura de alguem deste universo?
-        </p>
-    </header>
-    <main>
+</head> <body>
+<header>
+    <h1>Shumatsū No Kizuna</h1>
 
-        <div>
-            <img src="dado.png" alt="Um dado de RPG D20 turquesa com detalhes em ouro. A face central exibe uma gravura complexa
-         de uma Árvore da Vida e um dragão. Outros números visíveis são 8 e 14. Fundo verde-claro suave">
-        </div>
+    <p>
+        Histórias de um mundo no qual se desafiam mitos, conceitos
+        e o próprio conhecimento. Um mundo assolado por guerras e
+        catástrofes, nas quais sempre surgem seres que se destacam.
+        Gostaria de criar sua própria história ou ler alguma aventura
+        de alguém deste universo?
+    </p>
+</header>
 
+<main>
 
-        <h2>Faça sua escolha</h2>
-    </main>
+    <div>
+        <img
+            src="dado.png"
+            alt="Um dado de RPG D20 turquesa com detalhes em ouro.
+            A face central exibe uma gravura complexa de uma Árvore
+            da Vida e um dragão."
+        >
+    </div>
 
-<button class="book-button" id="bookButton" aria-label="Abrir livro"></button>
+    <h2>Faça sua escolha</h2>
+
+</main>
+
+<button
+    class="book-button"
+    id="bookButton"
+    aria-label="Abrir livro"
+    title="Abrir livro">
+</button>
 
 <script>
-  const button = document.getElementById("bookButton");
+    const button = document.getElementById("bookButton");
 
-  button.addEventListener("click", () => {
-    button.classList.add("active");
+    button.addEventListener("click", () => {
+        button.classList.add("active");
 
-    setTimeout(() => {
-      window.location.href = "index 2.html";
-    }, 300);
-  });
+        setTimeout(() => {
+            window.location.href = "index 2.html";
+        }, 300);
+    });
 </script>
 
-</body>
-
-</html>
+</body> </html>
